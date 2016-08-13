@@ -3,42 +3,47 @@ package lp2.lab06;
 import java.util.HashSet;
 
 public class Jogo {
-	private String nome;
+	private String nomeJogo;
 	private double preco;
 	private int maiorScore;
 	private int qtdJogadas;
 	private int qtdZeramentos;
-	private String tipo;
-	
-	HashSet <String> estilos = new HashSet();
-	
-	public Jogo(String nome, double preco, int maiorScore, int qtdJogadas, int qtdZeramentos, String tipo) {
-		this.nome = nome;
+	private TipoJogo tipo;
+
+	HashSet<String> estilos = new HashSet();
+
+	public Jogo(String nomeJogo, double preco, int maiorScore, int qtdJogadas, int qtdZeramentos, TipoJogo tipo) {
+		this.nomeJogo = nomeJogo;
 		this.preco = preco;
 		this.maiorScore = 0;
 		this.qtdJogadas = 0;
 		this.qtdZeramentos = 0;
 		this.tipo = tipo;
 	}
-	
+
 	public void registraJogada(int score, boolean zerou) {
 		if (score > maiorScore) {
 			setMaiorScore(score);
 		}
-		if (zerou == true){
+		if (zerou == true) {
 			setQtdZeramentos(getQtdZeramentos() + 1);
 		}
 	}
+
 	public void addEstilo(String estilo) {
 		estilos.add(estilo);
 	}
+
+	public void addX2p(Jogo jogo, TipoJogo tipo) {
+		
+	}
 	
-	public String getNome() {
-		return nome;
+	public String getNomeJogo() {
+		return nomeJogo;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setNomeJogo(String nomeJogo) {
+		this.nomeJogo = nomeJogo;
 	}
 
 	public double getPreco() {
@@ -72,5 +77,5 @@ public class Jogo {
 	public void setQtdZeramentos(int qtdZeramentos) {
 		this.qtdZeramentos = qtdZeramentos;
 	}
-	
+
 }

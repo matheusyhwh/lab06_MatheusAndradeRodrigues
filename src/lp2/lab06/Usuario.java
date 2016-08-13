@@ -3,23 +3,25 @@ package lp2.lab06;
 import java.util.ArrayList;
 
 public class Usuario {
-	String nome;
+	String nomeUsuario;
 	String login;
 	ArrayList<Jogo> jogosComprados;
 	double dinheiro;
-	String tipo;
+	String tipoUsuario;
+	int x2p;
+	
 
-	public Usuario(String nome, String login, ArrayList<Jogo> jogosComprados, double dinheiro, String tipo) {
-		super();
-		this.nome = nome;
+	public Usuario(String nomeUsuario, String login, ArrayList<Jogo> jogosComprados, double dinheiro, String tipoUsuario, int x2p) {
+		this.nomeUsuario = nomeUsuario;
 		this.login = login;
 		this.jogosComprados = jogosComprados;
-		this.dinheiro = dinheiro;
-		this.tipo = tipo;
+		this.dinheiro = 0;
+		this.tipoUsuario = tipoUsuario;
+		this.x2p = 0;
 	}
 
 	public double desconto(double preco) {
-		if (tipo.equals("Veterano")) {
+		if (getTipoUsuario().equals("Veterano")) {
 			return (preco - (0.2 * preco));
 		} else {
 			return (preco - (0.2 * preco));
@@ -35,17 +37,21 @@ public class Usuario {
 			jogosComprados.add(jogo);
 		}
 	}
-
+	
+	public void addDinheiro(int montante) {
+		setDinheiro(getDinheiro() + montante);
+	}
+	
 	public void registraJogada(String nomeDoJogo, int score, boolean zerou) {
 		
 	}
 
-	public String getNome() {
-		return nome;
+	public String getNomeUsuario() {
+		return nomeUsuario;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setNomeUsuario(String nomeUsuario) {
+		this.nomeUsuario = nomeUsuario;
 	}
 
 	public String getLogin() {
@@ -72,12 +78,20 @@ public class Usuario {
 		this.dinheiro = dinheiro;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getTipoUsuario() {
+		return tipoUsuario;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
+	
+	public int getX2p() {
+		return x2p;
+	}
+
+	public void setX2p(String tipoUsuario) {
+		this.x2p = x2p;
 	}
 
 }
