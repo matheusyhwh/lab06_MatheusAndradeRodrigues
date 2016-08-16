@@ -5,35 +5,28 @@ import java.util.ArrayList;
 public class Usuario {
 	String nomeUsuario;
 	String login;
-	ArrayList<Jogo> jogosComprados;
+	ArrayList<Jogo> jogosComprados = new ArrayList();
 	double dinheiro;
 	String tipoUsuario;
 	int x2p;
-	
 
-	public Usuario(String nomeUsuario, String login, ArrayList<Jogo> jogosComprados, double dinheiro, String tipoUsuario, int x2p) {
+	public Usuario(String nomeUsuario, String login, double dinheiro, String tipoUsuario, int x2p) {
 		this.nomeUsuario = nomeUsuario;
 		this.login = login;
-		this.jogosComprados = jogosComprados;
-		this.dinheiro = 0;
+		this.dinheiro = dinheiro;
 		this.tipoUsuario = tipoUsuario;
-		this.x2p = 0;
+		this.x2p = x2p;
 	}
-
+	
 	public double desconto(double preco) {
-		if (getTipoUsuario().equals("Veterano")) {
-			return (preco - (0.2 * preco));
-		} else {
-			return (preco - (0.2 * preco));
+		return (preco - (DESCONTO * preco));
 		}
-
-	}
-
+	
 	public void compra(Jogo jogo) throws Exception {
-		if (jogo.getPreco() > dinheiro) {
+		if (jogo.getPreco() > getDinheiro()) {
 			throw new Exception("Dinheiro insuficiente");
 		} else {
-			setDinheiro(dinheiro - desconto(jogo.getPreco()));
+			setDinheiro(getDinheiro() - desconto(jogo.getPreco()));
 			jogosComprados.add(jogo);
 		}
 	}
@@ -53,7 +46,7 @@ public class Usuario {
 	public void setNomeUsuario(String nomeUsuario) {
 		this.nomeUsuario = nomeUsuario;
 	}
-
+	DESCONTO
 	public String getLogin() {
 		return login;
 	}
@@ -90,7 +83,7 @@ public class Usuario {
 		return x2p;
 	}
 
-	public void setX2p(String tipoUsuario) {
+	public void setX2p(int x2p) {
 		this.x2p = x2p;
 	}
 

@@ -8,11 +8,11 @@ public class Jogo {
 	private int maiorScore;
 	private int qtdJogadas;
 	private int qtdZeramentos;
-	private TipoJogo tipo;
+	private Jogo tipo;
 
 	HashSet<String> estilos = new HashSet();
 
-	public Jogo(String nomeJogo, double preco, int maiorScore, int qtdJogadas, int qtdZeramentos, TipoJogo tipo) {
+	public Jogo(String nomeJogo, double preco, int maiorScore, int qtdJogadas, int qtdZeramentos, Jogo tipo) {
 		this.nomeJogo = nomeJogo;
 		this.preco = preco;
 		this.maiorScore = 0;
@@ -34,7 +34,7 @@ public class Jogo {
 		estilos.add(estilo);
 	}
 
-	public void addX2p(Jogo jogo, TipoJogo tipo) {
+	public void addX2p(Jogo jogo, Jogo tipo) {
 		
 	}
 	
@@ -53,7 +53,7 @@ public class Jogo {
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
-
+	
 	public int getMaiorScore() {
 		return maiorScore;
 	}
@@ -73,7 +73,7 @@ public class Jogo {
 	public int getQtdZeramentos() {
 		return qtdZeramentos;
 	}
-
+	
 	public void setQtdZeramentos(int qtdZeramentos) {
 		this.qtdZeramentos = qtdZeramentos;
 	}
