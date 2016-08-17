@@ -2,7 +2,7 @@ package lp2.lab06;
 
 import java.util.ArrayList;
 
-public class Usuario {
+public abstract class Usuario {
 	String nomeUsuario;
 	String login;
 	ArrayList<Jogo> jogosComprados = new ArrayList();
@@ -18,18 +18,10 @@ public class Usuario {
 		this.x2p = x2p;
 	}
 	
-	public double desconto(double preco) {
-		return (preco - (DESCONTO * preco));
-		}
+	public abstract double desconto(double preco);
 	
-	public void compra(Jogo jogo) throws Exception {
-		if (jogo.getPreco() > getDinheiro()) {
-			throw new Exception("Dinheiro insuficiente");
-		} else {
-			setDinheiro(getDinheiro() - desconto(jogo.getPreco()));
-			jogosComprados.add(jogo);
-		}
-	}
+	public abstract void compra(Jogo jogo) throws Exception;
+
 	
 	public void addDinheiro(int montante) {
 		setDinheiro(getDinheiro() + montante);
@@ -46,7 +38,7 @@ public class Usuario {
 	public void setNomeUsuario(String nomeUsuario) {
 		this.nomeUsuario = nomeUsuario;
 	}
-	DESCONTO
+
 	public String getLogin() {
 		return login;
 	}

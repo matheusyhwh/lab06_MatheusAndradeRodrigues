@@ -7,6 +7,7 @@ public class JogoPlataforma extends Jogo {
 	}
 	
 	public int registraJogada(String nomeJogo, int maiorScore, boolean zerou) {
+		return maiorScore;
 		
 	}
 }
