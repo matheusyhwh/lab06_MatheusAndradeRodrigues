@@ -12,13 +12,12 @@ public class Jogo {
 
 	HashSet<String> estilos = new HashSet();
 
-	public Jogo(String nomeJogo, double preco, int maiorScore, int qtdJogadas, int qtdZeramentos, Jogo tipo) {
+	public Jogo(String nomeJogo, double preco) {
 		this.nomeJogo = nomeJogo;
 		this.preco = preco;
 		this.maiorScore = 0;
 		this.qtdJogadas = 0;
 		this.qtdZeramentos = 0;
-		this.tipo = tipo;
 	}
 
 	public void registraJogada(int score, boolean zerou) {

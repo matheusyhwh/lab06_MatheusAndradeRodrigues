@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class UsuarioNoob extends Usuario {
 
-	,0. +
 	public UsuarioNoob(String nomeUsuario, String login, double dinheiro,
 			String tipoUsuario, int x2p) {
 		super(nomeUsuario, login, 0, tipoUsuario, 0);
