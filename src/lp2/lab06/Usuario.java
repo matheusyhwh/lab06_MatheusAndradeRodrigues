@@ -10,7 +10,7 @@ public abstract class Usuario {
 	String tipoUsuario;
 	int x2p;
 
-	public Usuario(String nomeUsuario, String login, double dinheiro, String tipoUsuario, int x2p) {
+	public Usuario(String nomeUsuario, String login) {
 		this.nomeUsuario = nomeUsuario;
 		this.login = login;
 		this.dinheiro = dinheiro;

@@ -9,15 +9,15 @@ public class Jogo {
 	private int qtdJogadas;
 	private int qtdZeramentos;
 	private Jogo tipo;
-
-	HashSet<String> estilos = new HashSet();
-
+	HashSet<String> estilos;
+	
 	public Jogo(String nomeJogo, double preco) {
 		this.nomeJogo = nomeJogo;
 		this.preco = preco;
 		this.maiorScore = 0;
 		this.qtdJogadas = 0;
 		this.qtdZeramentos = 0;
+		estilos = new HashSet<String>();
 	}
 
 	public void registraJogada(int score, boolean zerou) {
@@ -27,6 +27,7 @@ public class Jogo {
 		if (zerou == true) {
 			setQtdZeramentos(getQtdZeramentos() + 1);
 		}
+		qtdJogadas += 1;
 	}
 
 	public void addEstilo(String estilo) {

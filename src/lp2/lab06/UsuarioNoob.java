@@ -6,7 +6,9 @@ public class UsuarioNoob extends Usuario {
 
 	public UsuarioNoob(String nomeUsuario, String login, double dinheiro,
 			String tipoUsuario, int x2p) {
-		super(nomeUsuario, login, 0, tipoUsuario, 0);
+		super(nomeUsuario, login);
+		this.dinheiro = 0;
+		this.x2p = 0;
 	}
 	
 	public void compra(Jogo jogo) throws Exception {
