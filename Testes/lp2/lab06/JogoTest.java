@@ -17,27 +17,24 @@ public class JogoTest {
 		assertEquals(FFV.getNomeJogo(), "Final Fantasy V");
 		assertNotEquals(UMK3.getNomeJogo(), "Super Mario World");
 		assertNotEquals(SMW2.getNomeJogo(), "Super Mario World 2 - Yoshis Island");
-		assert(FFV.getPreco() == 10000000);
-		assert(UMK3.getPreco() != 10000000);
+		assertEquals(FFV.getPreco(), 10000000, 0.01);
+		assertNotEquals(UMK3.getPreco(), 10000000, 0.01);
 	}
 
 	@Test
 	public void testRegistraJogada() {
-		FFV.registraJogada(200, false);
+		FFV.registraJogada(410, false);
 		FFV.registraJogada(57, false);
-		assert(FFV.getQtdJogadas() == 2);
-		assert(FFV.getMaiorScore() == 200);
+		assertEquals(FFV.getQtdJogadas(), 2);
+		assertEquals(FFV.getScore(), 410);
 	}
 
 	@Test
 	public void testAddEstilo() {
+		int oldSize = UMK3.estilos.size();
 		UMK3.addEstilo("Multiplayer");
-		assert(UMK3.estilos.add("Multiplayer"));
-	}
-
-	@Test
-	public void testAddX2p() {
-		fail("Not yet implemented");
+		int newSize = UMK3.estilos.size();
+		assert(newSize > oldSize);
 	}
 
 }

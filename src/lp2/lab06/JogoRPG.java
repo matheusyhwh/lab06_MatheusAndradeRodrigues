@@ -6,8 +6,15 @@ public class JogoRPG extends Jogo {
 		super(nome, preco);
 	}
 	
-	public int registraJogada(String nomeJogo, int maiorScore, boolean zerou) {
-		return maiorScore;
-		
+	@Override
+	public int registraJogada(int score, boolean zerou) {
+		setQtdJogadas(getQtdJogadas() + 1);
+		if (score > getScore()) {
+			setScore(score);
+		}
+		if (zerou == true) {
+			setQtdZeramentos(getQtdZeramentos() + 1);
+		}
+		return 10; // cada vez que jogou, +10
 	}
 }
