@@ -5,24 +5,24 @@ import java.util.HashSet;
 public abstract class Jogo {
 	private String nomeJogo;
 	private double preco;
-	private int score;
+	private int maxScore;
 	private int qtdJogadas;
 	private int qtdZeramentos;
-	HashSet<String> estilos;
+	private HashSet<String> jogabilidades;
 	
 	public Jogo(String nomeJogo, double preco) {
 		this.nomeJogo = nomeJogo;
 		this.preco = preco;
-		this.score = 0;
+		this.maxScore = 0;
 		this.qtdJogadas = 0;
 		this.qtdZeramentos = 0;
-		estilos = new HashSet<String>();
+		this.jogabilidades = new HashSet<String>();
 	}
 
 	public abstract int registraJogada(int score, boolean zerou);
 
 	public void addEstilo(String estilo) {
-		estilos.add(estilo);
+		getJogabilidades().add(estilo);
 	}
 
 	public String getNomeJogo() {
@@ -41,12 +41,12 @@ public abstract class Jogo {
 		this.preco = preco;
 	}
 	
-	public int getScore() {
-		return score;
+	public int getMaxScore() {
+		return maxScore;
 	}
 
-	public void setScore(int score) {
-		this.score = score;
+	public void setMaxScore(int score) {
+		this.maxScore = score;
 	}
 
 	public int getQtdJogadas() {
@@ -63,6 +63,14 @@ public abstract class Jogo {
 	
 	public void setQtdZeramentos(int qtdZeramentos) {
 		this.qtdZeramentos = qtdZeramentos;
+	}
+
+	public HashSet<String> getJogabilidades() {
+		return jogabilidades;
+	}
+
+	public void setJogabilidades(HashSet<String> jogabilidades) {
+		this.jogabilidades = jogabilidades;
 	}
 
 }

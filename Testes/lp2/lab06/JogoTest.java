@@ -4,10 +4,16 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import lp2.lab06.Jogo;
+import lp2.lab06.JogoLuta;
+import lp2.lab06.JogoPlataforma;
+import lp2.lab06.JogoRPG;
+
+
 public class JogoTest {
 
 	
-	Jogo FFV = new JogoRPG("Final Fantasy V", 10000000);
+	Jogo FFV = new JogoRPG("Final Fantasy V", 10000);
 	Jogo UMK3 = new JogoLuta("Ultimate Mortal Kombat 3", 29.90);
 	Jogo SMW2 = new JogoPlataforma("Super Mario World 2 - Yoshi's Island", 30.00);
 	
@@ -17,8 +23,8 @@ public class JogoTest {
 		assertEquals(FFV.getNomeJogo(), "Final Fantasy V");
 		assertNotEquals(UMK3.getNomeJogo(), "Super Mario World");
 		assertNotEquals(SMW2.getNomeJogo(), "Super Mario World 2 - Yoshis Island");
-		assertEquals(FFV.getPreco(), 10000000, 0.01);
-		assertNotEquals(UMK3.getPreco(), 10000000, 0.01);
+		assertEquals(FFV.getPreco(), 10000, 0.01);
+		assertNotEquals(UMK3.getPreco(), 10000, 0.01);
 	}
 
 	@Test
@@ -26,15 +32,18 @@ public class JogoTest {
 		FFV.registraJogada(410, false);
 		FFV.registraJogada(57, false);
 		assertEquals(FFV.getQtdJogadas(), 2);
-		assertEquals(FFV.getScore(), 410);
+		assertEquals(FFV.getMaxScore(), 410);
 	}
 
 	@Test
 	public void testAddEstilo() {
-		int oldSize = UMK3.estilos.size();
+		int oldSize = UMK3.getJogabilidades().size();
 		UMK3.addEstilo("Multiplayer");
-		int newSize = UMK3.estilos.size();
-		assert(newSize > oldSize);
+		int newSize = UMK3.getJogabilidades().size();
+		assertTrue(newSize > oldSize);
+		UMK3.addEstilo("Multiplayer");
+		int finalSize = UMK3.getJogabilidades().size();
+		assert(finalSize == newSize);
 	}
 
 }

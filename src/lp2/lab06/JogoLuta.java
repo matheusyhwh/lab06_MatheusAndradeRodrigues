@@ -9,11 +9,11 @@ public class JogoLuta extends Jogo {
 	@Override
 	public int registraJogada(int score, boolean zerou) {
 		setQtdJogadas(getQtdJogadas() + 1);	
-		if (zerou == true) {
+		if (zerou) {
 			setQtdZeramentos(getQtdZeramentos() + 1);
 		}	
-		if (score > getScore()) {
-			setScore(score);
+		if (score > getMaxScore()) {
+			setMaxScore(score);
 			return (score/1000);
 		}
 		return 0;

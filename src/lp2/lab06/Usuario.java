@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public abstract class Usuario {
 	String nomeUsuario;
 	String login;
-	ArrayList<Jogo> jogosComprados = new ArrayList();
+	ArrayList<Jogo> jogosComprados;
 	double dinheiro;
 	int x2p;
 
@@ -14,6 +14,7 @@ public abstract class Usuario {
 		this.login = login;
 		this.dinheiro = dinheiro;
 		this.x2p = x2p;
+		this.jogosComprados = new ArrayList();
 	}
 
 	public abstract double desconto(double preco);
@@ -25,7 +26,8 @@ public abstract class Usuario {
 	}
 
 	public void registraJogada(String nomeDoJogo, int score, boolean zerou) {
-		setX2p(getX2p() + getJogo(nomeDoJogo).registraJogada(score, zerou));
+		Jogo jogo = getJogo(nomeDoJogo);
+		setX2p(getX2p() + jogo.registraJogada(score, zerou));
 	}
 
 	public String getNomeUsuario() {

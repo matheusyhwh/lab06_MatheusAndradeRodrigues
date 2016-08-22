@@ -4,6 +4,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import lp2.lab06.Usuario;
+import lp2.lab06.UsuarioNoob;
+import lp2.lab06.UsuarioVeterano;
+
 public class UsuarioTest {
 
 	Usuario user1 = new UsuarioNoob("Usuario #1", "user1");
@@ -22,7 +26,7 @@ public class UsuarioTest {
 
 	@Test
 	public void testDesconto() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test

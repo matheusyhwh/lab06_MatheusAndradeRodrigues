@@ -9,10 +9,10 @@ public class JogoRPG extends Jogo {
 	@Override
 	public int registraJogada(int score, boolean zerou) {
 		setQtdJogadas(getQtdJogadas() + 1);
-		if (score > getScore()) {
-			setScore(score);
+		if (score > getMaxScore()) {
+			setMaxScore(score);
 		}
-		if (zerou == true) {
+		if (zerou) {
 			setQtdZeramentos(getQtdZeramentos() + 1);
 		}
 		return 10; // cada vez que jogou, +10

@@ -21,7 +21,7 @@ public class UsuarioVeterano extends Usuario {
 	}
 
 	public double desconto(double preco) {
-		return (preco - (0.1 * preco));
+		return (preco - (0.2 * preco));
 	}
 
 }
