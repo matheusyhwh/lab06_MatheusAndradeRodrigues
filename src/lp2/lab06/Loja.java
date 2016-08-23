@@ -15,13 +15,14 @@ public class Loja {
 				return usuario;
 			}
 		}
-		throw new Exception("Usuario nao encontrado");
+		throw new LogicException("Usuario nao encontrado na lista");
 	}
 
-	public void addUsuario(Usuario usuario) {
+	public void addUsuario(Usuario usuario) throws LogicException {
 		if (!usuarios.contains(usuario)) {
 			usuarios.add(usuario);
 		}
+		throw new LogicException("Usuario ja existente");
 	}
 
 	public void addDinheiro(Usuario user, double montante) {

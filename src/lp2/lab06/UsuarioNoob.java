@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 public class UsuarioNoob extends Usuario {
 
-	public UsuarioNoob(String nomeUsuario, String login) {
+	public UsuarioNoob(String nomeUsuario, String login) throws Exception {
 		super(nomeUsuario, login);
 		this.dinheiro = 0;
 		this.x2p = 0;
 	}
 	
 	public void compra(Jogo jogo) throws Exception {
-		if (jogo.getPreco() > getDinheiro()) {
-			throw new Exception("Dinheiro insuficiente");
+		if (desconto(jogo.getPreco()) > getDinheiro()) {
+			throw new ValueException("Saldo insuficiente");
 		} else {
 			setDinheiro(getDinheiro() - desconto(jogo.getPreco()));
 			jogosComprados.add(jogo);

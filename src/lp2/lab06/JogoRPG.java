@@ -2,7 +2,7 @@ package lp2.lab06;
 
 public class JogoRPG extends Jogo {
 
-	public JogoRPG(String nome, double preco) {
+	public JogoRPG(String nome, double preco) throws Exception {
 		super(nome, preco);
 	}
 	

@@ -2,7 +2,7 @@ package lp2.lab06;
 
 public class JogoPlataforma extends Jogo {
 
-	public JogoPlataforma(String nome, double preco) {
+	public JogoPlataforma(String nome, double preco) throws Exception {
 		super(nome, preco);
 	}
 	

@@ -10,7 +10,13 @@ public abstract class Jogo {
 	private int qtdZeramentos;
 	private HashSet<String> jogabilidades;
 	
-	public Jogo(String nomeJogo, double preco) {
+	public Jogo(String nomeJogo, double preco) throws StringException, ValueException {
+		if (nomeJogo == null || nomeJogo.isEmpty()) {
+			throw new StringException("Nome nao pode ser nulo ou vazio");
+		}
+		if (preco < 0) {
+			throw new ValueException("Preco nao pode ser negativo");
+		}
 		this.nomeJogo = nomeJogo;
 		this.preco = preco;
 		this.maxScore = 0;
@@ -19,7 +25,7 @@ public abstract class Jogo {
 		this.jogabilidades = new HashSet<String>();
 	}
 
-	public abstract int registraJogada(int score, boolean zerou);
+	public abstract int registraJogada(int score, boolean zerou) throws Exception;
 
 	public void addEstilo(String estilo) {
 		getJogabilidades().add(estilo);

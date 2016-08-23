@@ -9,7 +9,13 @@ public abstract class Usuario {
 	double dinheiro;
 	int x2p;
 
-	public Usuario(String nomeUsuario, String login) {
+	public Usuario(String nomeUsuario, String login) throws Exception {
+		if (nomeUsuario == null || nomeUsuario.isEmpty()) {
+			throw new StringException("Nome do usuario nao deve ser nulo ou vazio.");
+		}
+		if (login == null || login.isEmpty()) {
+			throw new StringException("Login do usuario nao deve ser nulo ou vazio.");
+		}
 		this.nomeUsuario = nomeUsuario;
 		this.login = login;
 		this.dinheiro = dinheiro;
@@ -25,7 +31,7 @@ public abstract class Usuario {
 		setDinheiro(getDinheiro() + montante);
 	}
 
-	public void registraJogada(String nomeDoJogo, int score, boolean zerou) {
+	public void registraJogada(String nomeDoJogo, int score, boolean zerou) throws Exception {
 		Jogo jogo = getJogo(nomeDoJogo);
 		setX2p(getX2p() + jogo.registraJogada(score, zerou));
 	}
@@ -70,13 +76,13 @@ public abstract class Usuario {
 		this.x2p = x2p;
 	}
 
-	public Jogo getJogo(String nome) {
+	public Jogo getJogo(String nome) throws Exception{
 		for (Jogo jogo : jogosComprados) {
 			if (jogo.getNomeJogo().equals(nome)) {
 				return jogo;
 			}
 		}
-		return null; // ?
+		throw new LogicException("Jogo nao contido na lista");
 	}
 
 	@Override
@@ -102,6 +108,23 @@ public abstract class Usuario {
 		} else if (!login.equals(other.login))
 			return false;
 		return true;
+	}
+	
+	public String toString() {
+		String toString = login + "\n" + nomeUsuario + " - ";
+		if (this instanceof UsuarioNoob) {
+			toString += "Jogador Noob\n";
+		} else if (this instanceof UsuarioVeterano) {
+			toString += "Jogador Veterano\n";
+		}
+		toString += "Lista de jogos:\n";
+		int precoTotal = 0;
+		for (Jogo jogo : jogosComprados) {
+			toString += jogo + "\n";
+			precoTotal += jogo.getPreco();
+		}
+		toString += "\nTotal de preço dos jogos: R$ " + String.format("%.2f", precoTotal);
+		return toString;
 	}
 	
 }
