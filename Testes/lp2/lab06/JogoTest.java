@@ -2,16 +2,24 @@ package lp2.lab06;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class JogoTest {
 
+	Jogo FFV;
+	Jogo UMK3;
+	Jogo SMW2;
+	
+	@Before
+	public void setup() throws Exception {
+		FFV = new JogoRPG("Final Fantasy V", 10000);
+		UMK3 = new JogoLuta("Ultimate Mortal Kombat 3", 29.90);
+		SMW2 = new JogoPlataforma("Super Mario World 2 - Yoshi's Island", 30.00);
+	}
+
 	@Test
 	public void testJogo() throws Exception {
-		Jogo FFV = new JogoRPG("Final Fantasy V", 10000);
-		Jogo UMK3 = new JogoLuta("Ultimate Mortal Kombat 3", 29.90);
-		Jogo SMW2 = new JogoPlataforma("Super Mario World 2 - Yoshi's Island", 30.00);
-	
 		assertEquals(FFV.getNomeJogo(), "Final Fantasy V");
 		assertNotEquals(UMK3.getNomeJogo(), "Super Mario World");
 		assertNotEquals(SMW2.getNomeJogo(), "Super Mario World 2 - Yoshis Island");
@@ -21,10 +29,6 @@ public class JogoTest {
 
 	@Test
 	public void testRegistraJogada() throws Exception {
-		Jogo FFV = new JogoRPG("Final Fantasy V", 10000);
-		Jogo UMK3 = new JogoLuta("Ultimate Mortal Kombat 3", 29.90);
-		Jogo SMW2 = new JogoPlataforma("Super Mario World 2 - Yoshi's Island", 30.00);
-		
 		FFV.registraJogada(410, false);
 		FFV.registraJogada(57, false);
 		assertEquals(FFV.getQtdJogadas(), 2);
@@ -33,10 +37,6 @@ public class JogoTest {
 
 	@Test
 	public void testAddEstilo() throws Exception {
-		Jogo FFV = new JogoRPG("Final Fantasy V", 10000);
-		Jogo UMK3 = new JogoLuta("Ultimate Mortal Kombat 3", 29.90);
-		Jogo SMW2 = new JogoPlataforma("Super Mario World 2 - Yoshi's Island", 30.00);
-		
 		int oldSize = UMK3.getJogabilidades().size();
 		UMK3.addEstilo("Multiplayer");
 		int newSize = UMK3.getJogabilidades().size();

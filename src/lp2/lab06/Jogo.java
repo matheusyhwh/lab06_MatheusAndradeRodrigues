@@ -2,33 +2,37 @@ package lp2.lab06;
 
 import java.util.HashSet;
 
+import enumerations.Jogabilidades;
+import exceptions.StringNulaOuVaziaException;
+import exceptions.ValorInvalidoException;
+
 public abstract class Jogo {
 	private String nomeJogo;
 	private double preco;
 	private int maxScore;
 	private int qtdJogadas;
 	private int qtdZeramentos;
-	private HashSet<String> jogabilidades;
+	private HashSet<Jogabilidades> jogabilidades;
 	
-	public Jogo(String nomeJogo, double preco) throws StringException, ValueException {
+	public Jogo(String nomeJogo, double preco) throws StringNulaOuVaziaException, ValorInvalidoException {
 		if (nomeJogo == null || nomeJogo.isEmpty()) {
-			throw new StringException("Nome nao pode ser nulo ou vazio");
+			throw new StringNulaOuVaziaException("Nome nao pode ser nulo ou vazio");
 		}
 		if (preco < 0) {
-			throw new ValueException("Preco nao pode ser negativo");
+			throw new ValorInvalidoException("Preco nao pode ser negativo");
 		}
 		this.nomeJogo = nomeJogo;
 		this.preco = preco;
 		this.maxScore = 0;
 		this.qtdJogadas = 0;
 		this.qtdZeramentos = 0;
-		this.jogabilidades = new HashSet<String>();
+		this.jogabilidades = new HashSet<Jogabilidades>();
 	}
 
 	public abstract int registraJogada(int score, boolean zerou) throws Exception;
 
-	public void addEstilo(String estilo) {
-		getJogabilidades().add(estilo);
+	public void addEstilo(Jogabilidades jogabilidade) {
+		getJogabilidades().add(Jogabilidades.COMPETITIVO);
 	}
 
 	public String getNomeJogo() {
@@ -71,11 +75,11 @@ public abstract class Jogo {
 		this.qtdZeramentos = qtdZeramentos;
 	}
 
-	public HashSet<String> getJogabilidades() {
+	public HashSet<Jogabilidades> getJogabilidades() {
 		return jogabilidades;
 	}
 
-	public void setJogabilidades(HashSet<String> jogabilidades) {
+	public void setJogabilidades(HashSet<Jogabilidades> jogabilidades) {
 		this.jogabilidades = jogabilidades;
 	}
 

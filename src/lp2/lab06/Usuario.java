@@ -2,6 +2,10 @@ package lp2.lab06;
 
 import java.util.ArrayList;
 
+import exceptions.LogicaException;
+import exceptions.StringNulaOuVaziaException;
+import exceptions.ValorInvalidoException;
+
 public abstract class Usuario {
 	String nomeUsuario;
 	String login;
@@ -9,12 +13,12 @@ public abstract class Usuario {
 	double dinheiro;
 	int x2p;
 
-	public Usuario(String nomeUsuario, String login) throws Exception {
+	public Usuario(String nomeUsuario, String login) throws StringNulaOuVaziaException, ValorInvalidoException {
 		if (nomeUsuario == null || nomeUsuario.isEmpty()) {
-			throw new StringException("Nome do usuario nao deve ser nulo ou vazio.");
+			throw new StringNulaOuVaziaException("Nome do usuario nao deve ser nulo ou vazio.");
 		}
 		if (login == null || login.isEmpty()) {
-			throw new StringException("Login do usuario nao deve ser nulo ou vazio.");
+			throw new StringNulaOuVaziaException("Login do usuario nao deve ser nulo ou vazio.");
 		}
 		this.nomeUsuario = nomeUsuario;
 		this.login = login;
@@ -30,10 +34,19 @@ public abstract class Usuario {
 	public void addDinheiro(double montante) {
 		setDinheiro(getDinheiro() + montante);
 	}
+	public void addX2p(int x2p) {
+		setX2p(getX2p() + x2p);
+	}
 
 	public void registraJogada(String nomeDoJogo, int score, boolean zerou) throws Exception {
+		if (nomeDoJogo == null || nomeDoJogo.isEmpty()) {
+			throw new StringNulaOuVaziaException("Nome do jogo nao deve ser nulo ou vazio");
+		}
+		if (score < 0) {
+			throw new ValorInvalidoException("Score nao pode ser negativo");
+		}
 		Jogo jogo = getJogo(nomeDoJogo);
-		setX2p(getX2p() + jogo.registraJogada(score, zerou));
+		addX2p(jogo.registraJogada(score, zerou));
 	}
 
 	public String getNomeUsuario() {
@@ -76,13 +89,13 @@ public abstract class Usuario {
 		this.x2p = x2p;
 	}
 
-	public Jogo getJogo(String nome) throws Exception{
+	public Jogo getJogo(String nome) throws LogicaException{
 		for (Jogo jogo : jogosComprados) {
 			if (jogo.getNomeJogo().equals(nome)) {
 				return jogo;
 			}
 		}
-		throw new LogicException("Jogo nao contido na lista");
+		throw new LogicaException("Jogo nao contido na lista");
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package lp2.lab06;
 
+import exceptions.ValorInvalidoException;
+
 public class JogoLuta extends Jogo {
 
 	public JogoLuta(String nome, double preco) throws Exception {
@@ -9,7 +11,7 @@ public class JogoLuta extends Jogo {
 	@Override
 	public int registraJogada(int score, boolean zerou) throws Exception {
 		if (score < 0) {
-			throw new ValueException("Score nao pode ser negativo");
+			throw new ValorInvalidoException("Score nao pode ser negativo");
 		}
 		setQtdJogadas(getQtdJogadas() + 1);	
 		if (zerou) {

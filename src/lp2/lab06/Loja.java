@@ -2,6 +2,8 @@ package lp2.lab06;
 
 import java.util.ArrayList;
 
+import exceptions.LogicaException;
+
 public class Loja {
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>(); // qual eh...
 	
@@ -15,14 +17,14 @@ public class Loja {
 				return usuario;
 			}
 		}
-		throw new LogicException("Usuario nao encontrado na lista");
+		throw new LogicaException("Usuario nao encontrado na lista");
 	}
 
-	public void addUsuario(Usuario usuario) throws LogicException {
+	public void addUsuario(Usuario usuario) throws LogicaException {
 		if (!usuarios.contains(usuario)) {
 			usuarios.add(usuario);
 		}
-		throw new LogicException("Usuario ja existente");
+		throw new LogicaException("Usuario ja existente");
 	}
 
 	public void addDinheiro(Usuario user, double montante) {
@@ -33,6 +35,7 @@ public class Loja {
 		if (usuarios.contains(getUsuario(login))) {
 			getUsuario(login).compra(jogo);
 		}
+		throw new LogicaException("Usuario nao consta na lista de cadastros");
 	}
 
 	public void upgrade(UsuarioNoob usuario) throws Exception {

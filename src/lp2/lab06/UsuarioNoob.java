@@ -2,6 +2,8 @@ package lp2.lab06;
 
 import java.util.ArrayList;
 
+import exceptions.ValorInvalidoException;
+
 public class UsuarioNoob extends Usuario {
 
 	public UsuarioNoob(String nomeUsuario, String login) throws Exception {
@@ -12,12 +14,12 @@ public class UsuarioNoob extends Usuario {
 	
 	public void compra(Jogo jogo) throws Exception {
 		if (desconto(jogo.getPreco()) > getDinheiro()) {
-			throw new ValueException("Saldo insuficiente");
+			throw new ValorInvalidoException("Saldo insuficiente");
 		} else {
 			setDinheiro(getDinheiro() - desconto(jogo.getPreco()));
 			jogosComprados.add(jogo);
 		}
-		setX2p((int)jogo.getPreco()*10);
+		addX2p((int)jogo.getPreco()*10);
 	}
 
 	public double desconto(double preco) {
