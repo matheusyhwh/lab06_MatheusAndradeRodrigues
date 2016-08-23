@@ -2,8 +2,18 @@ package lp2.lab06;
 
 import exceptions.ValorInvalidoException;
 
+/**
+ * 
+ * @author mathe
+ *
+ */
 public class JogoLuta extends Jogo {
-
+	/**
+	 * 
+	 * @param nome
+	 * @param preco
+	 * @throws Exception
+	 */
 	public JogoLuta(String nome, double preco) throws Exception {
 		super(nome, preco);
 	}
@@ -13,13 +23,13 @@ public class JogoLuta extends Jogo {
 		if (score < 0) {
 			throw new ValorInvalidoException("Score nao pode ser negativo");
 		}
-		setQtdJogadas(getQtdJogadas() + 1);	
+		setQtdJogadas(getQtdJogadas() + 1);
 		if (zerou) {
 			setQtdZeramentos(getQtdZeramentos() + 1);
-		}	
+		}
 		if (score > getMaxScore()) {
 			setMaxScore(score);
-			return (score/1000);
+			return (score / 1000);
 		}
 		return 0;
 	}

@@ -3,9 +3,18 @@ package lp2.lab06;
 import java.util.ArrayList;
 
 import exceptions.ValorInvalidoException;
-
+/**
+ * 
+ * @author mathe
+ *
+ */
 public class UsuarioNoob extends Usuario {
-
+	/**
+	 * 
+	 * @param nomeUsuario
+	 * @param login
+	 * @throws Exception
+	 */
 	public UsuarioNoob(String nomeUsuario, String login) throws Exception {
 		super(nomeUsuario, login);
 		this.dinheiro = 0;

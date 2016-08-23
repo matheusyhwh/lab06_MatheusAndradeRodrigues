@@ -5,7 +5,12 @@ import java.util.ArrayList;
 import exceptions.ValorInvalidoException;
 
 public class UsuarioVeterano extends Usuario {
-	
+	/**
+	 * 
+	 * @param nomeUsuario
+	 * @param login
+	 * @throws Exception
+	 */
 	public UsuarioVeterano(String nomeUsuario, String login) throws Exception {
 		super(nomeUsuario, login);
 		this.dinheiro = 0;

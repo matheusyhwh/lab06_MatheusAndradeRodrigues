@@ -6,6 +6,11 @@ import exceptions.LogicaException;
 import exceptions.StringNulaOuVaziaException;
 import exceptions.ValorInvalidoException;
 
+/**
+ * 
+ * @author mathe
+ *
+ */
 public abstract class Usuario {
 	String nomeUsuario;
 	String login;
@@ -13,6 +18,13 @@ public abstract class Usuario {
 	double dinheiro;
 	int x2p;
 
+	/**
+	 * 
+	 * @param nomeUsuario
+	 * @param login
+	 * @throws StringNulaOuVaziaException
+	 * @throws ValorInvalidoException
+	 */
 	public Usuario(String nomeUsuario, String login) throws StringNulaOuVaziaException, ValorInvalidoException {
 		if (nomeUsuario == null || nomeUsuario.isEmpty()) {
 			throw new StringNulaOuVaziaException("Nome do usuario nao deve ser nulo ou vazio.");
@@ -27,17 +39,43 @@ public abstract class Usuario {
 		this.jogosComprados = new ArrayList();
 	}
 
+	/**
+	 * 
+	 * @param preco
+	 * @return
+	 */
 	public abstract double desconto(double preco);
 
+	/**
+	 * 
+	 * @param jogo
+	 * @throws Exception
+	 */
 	public abstract void compra(Jogo jogo) throws Exception;
 
+	/**
+	 * 
+	 * @param montante
+	 */
 	public void addDinheiro(double montante) {
 		setDinheiro(getDinheiro() + montante);
 	}
+
+	/**
+	 * 
+	 * @param x2p
+	 */
 	public void addX2p(int x2p) {
 		setX2p(getX2p() + x2p);
 	}
 
+	/**
+	 * 
+	 * @param nomeDoJogo
+	 * @param score
+	 * @param zerou
+	 * @throws Exception
+	 */
 	public void registraJogada(String nomeDoJogo, int score, boolean zerou) throws Exception {
 		if (nomeDoJogo == null || nomeDoJogo.isEmpty()) {
 			throw new StringNulaOuVaziaException("Nome do jogo nao deve ser nulo ou vazio");
@@ -89,7 +127,13 @@ public abstract class Usuario {
 		this.x2p = x2p;
 	}
 
-	public Jogo getJogo(String nome) throws LogicaException{
+	/**
+	 * 
+	 * @param nome
+	 * @return
+	 * @throws LogicaException
+	 */
+	public Jogo getJogo(String nome) throws LogicaException {
 		for (Jogo jogo : jogosComprados) {
 			if (jogo.getNomeJogo().equals(nome)) {
 				return jogo;
@@ -122,7 +166,7 @@ public abstract class Usuario {
 			return false;
 		return true;
 	}
-	
+
 	public String toString() {
 		String toString = login + "\n" + nomeUsuario + " - ";
 		if (this instanceof UsuarioNoob) {
@@ -139,5 +183,5 @@ public abstract class Usuario {
 		toString += "\nTotal de preço dos jogos: R$ " + String.format("%.2f", precoTotal);
 		return toString;
 	}
-	
+
 }

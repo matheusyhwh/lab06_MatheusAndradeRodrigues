@@ -6,6 +6,12 @@ import enumerations.Jogabilidades;
 import exceptions.StringNulaOuVaziaException;
 import exceptions.ValorInvalidoException;
 
+/**
+ * Classe jogo
+ * 
+ * @author Matheus Andrade Rodrigues
+ *
+ */
 public abstract class Jogo {
 	private String nomeJogo;
 	private double preco;
@@ -13,7 +19,14 @@ public abstract class Jogo {
 	private int qtdJogadas;
 	private int qtdZeramentos;
 	private HashSet<Jogabilidades> jogabilidades;
-	
+
+	/**
+	 * 
+	 * @param nomeJogo
+	 * @param preco
+	 * @throws StringNulaOuVaziaException
+	 * @throws ValorInvalidoException
+	 */
 	public Jogo(String nomeJogo, double preco) throws StringNulaOuVaziaException, ValorInvalidoException {
 		if (nomeJogo == null || nomeJogo.isEmpty()) {
 			throw new StringNulaOuVaziaException("Nome nao pode ser nulo ou vazio");
@@ -29,8 +42,19 @@ public abstract class Jogo {
 		this.jogabilidades = new HashSet<Jogabilidades>();
 	}
 
+	/**
+	 * 
+	 * @param score
+	 * @param zerou
+	 * @return
+	 * @throws Exception
+	 */
 	public abstract int registraJogada(int score, boolean zerou) throws Exception;
 
+	/**
+	 * 
+	 * @param jogabilidade
+	 */
 	public void addEstilo(Jogabilidades jogabilidade) {
 		getJogabilidades().add(Jogabilidades.COMPETITIVO);
 	}
@@ -50,7 +74,7 @@ public abstract class Jogo {
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
-	
+
 	public int getMaxScore() {
 		return maxScore;
 	}
@@ -70,7 +94,7 @@ public abstract class Jogo {
 	public int getQtdZeramentos() {
 		return qtdZeramentos;
 	}
-	
+
 	public void setQtdZeramentos(int qtdZeramentos) {
 		this.qtdZeramentos = qtdZeramentos;
 	}
