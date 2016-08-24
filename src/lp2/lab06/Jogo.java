@@ -3,11 +3,9 @@ package lp2.lab06;
 import java.util.HashSet;
 
 import enumerations.Jogabilidades;
-import exceptions.StringNulaOuVaziaException;
-import exceptions.ValorInvalidoException;
+import exceptions.*;
 
 /**
- * Classe jogo
  * 
  * @author Matheus Andrade Rodrigues
  *
@@ -21,7 +19,7 @@ public abstract class Jogo {
 	private HashSet<Jogabilidades> jogabilidades;
 
 	/**
-	 * 
+	 *  Construtor da classe Jogo, superclasse de JogoRPG, JogoPlataforma e JogoLuta
 	 * @param nomeJogo
 	 * @param preco
 	 * @throws StringNulaOuVaziaException
@@ -43,7 +41,8 @@ public abstract class Jogo {
 	}
 
 	/**
-	 * 
+	 * Registra jogada é um método abstrato, redirecionará para o registra jogada de JogoRPG, JogoLuta e JogoPlataforma
+	 * Em cada subclasse, terá um comportamento ligeiramente diferente. 
 	 * @param score
 	 * @param zerou
 	 * @return
@@ -52,13 +51,15 @@ public abstract class Jogo {
 	public abstract int registraJogada(int score, boolean zerou) throws Exception;
 
 	/**
-	 * 
+	 * Adicona um dos estilos definidos na classe Jogabilidades
 	 * @param jogabilidade
 	 */
-	public void addEstilo(Jogabilidades jogabilidade) {
-		getJogabilidades().add(Jogabilidades.COMPETITIVO);
+	public void addEstilo(Jogabilidades estilo) {
+		getJogabilidades().add(estilo);
 	}
-
+	
+	/* Gets e Sets */
+	
 	public String getNomeJogo() {
 		return nomeJogo;
 	}
@@ -107,4 +108,7 @@ public abstract class Jogo {
 		this.jogabilidades = jogabilidades;
 	}
 
+	/* HashCode, Equals e toString */
+	
+	public abstract String toString();
 }

@@ -4,18 +4,24 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import exceptions.*;
+import enumerations.Jogabilidades;
 
 public class JogoTest {
 
 	Jogo FFV;
 	Jogo UMK3;
 	Jogo SMW2;
-	
+
 	@Before
-	public void setup() throws Exception {
-		FFV = new JogoRPG("Final Fantasy V", 10000);
-		UMK3 = new JogoLuta("Ultimate Mortal Kombat 3", 29.90);
-		SMW2 = new JogoPlataforma("Super Mario World 2 - Yoshi's Island", 30.00);
+	public void setup() {
+		try {
+			FFV = new JogoRPG("Final Fantasy V", 10000);
+			UMK3 = new JogoLuta("Ultimate Mortal Kombat 3", 29.90);
+			SMW2 = new JogoPlataforma("Super Mario World 2 - Yoshi's Island", 30.00);
+		} catch (Exception e) {
+			fail("Não deveria lançar exception");
+		}
 	}
 
 	@Test
@@ -38,12 +44,12 @@ public class JogoTest {
 	@Test
 	public void testAddEstilo() throws Exception {
 		int oldSize = UMK3.getJogabilidades().size();
-		UMK3.addEstilo("Multiplayer");
+		UMK3.addEstilo(Jogabilidades.COMPETITIVO);
 		int newSize = UMK3.getJogabilidades().size();
 		assertTrue(newSize > oldSize);
-		UMK3.addEstilo("Multiplayer");
+		UMK3.addEstilo(Jogabilidades.COMPETITIVO);
 		int finalSize = UMK3.getJogabilidades().size();
-		assert (finalSize == newSize);
+		assertTrue(finalSize == newSize);
 	}
 
 }

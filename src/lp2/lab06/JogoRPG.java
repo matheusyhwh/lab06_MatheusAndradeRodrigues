@@ -1,6 +1,6 @@
 package lp2.lab06;
 
-import exceptions.ValorInvalidoException;
+import exceptions.*;
 
 /**
  * 
@@ -31,5 +31,10 @@ public class JogoRPG extends Jogo {
 			setQtdZeramentos(getQtdZeramentos() + 1);
 		}
 		return 10; // cada vez que jogou, +10
+	}
+
+	public String toString() {
+		return "+ " + super.getNomeJogo() + " - RPG:\n==> Jogou " + super.getQtdJogadas() + " vez(es).\n==> Zerou "
+				+ this.getQtdZeramentos() + " vez(es).\n==> Maior score: " + this.getMaxScore();
 	}
 }

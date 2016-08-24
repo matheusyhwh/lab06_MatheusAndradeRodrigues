@@ -1,10 +1,10 @@
 package lp2.lab06;
 
-import exceptions.ValorInvalidoException;
+import exceptions.*;
 
 /**
  * 
- * @author mathe
+ * @author Matheus Andrade Rodrigues
  *
  */
 public class JogoPlataforma extends Jogo {
@@ -32,5 +32,11 @@ public class JogoPlataforma extends Jogo {
 			return 10;
 		}
 		return 0;
+	}
+
+	public String toString() {
+		return "+ " + super.getNomeJogo() + " - Plataforma:\n==> Jogou " + super.getQtdJogadas()
+				+ " vez(es).\n==> Zerou " + this.getQtdZeramentos() + " vez(es).\n==> Maior score: "
+				+ this.getMaxScore();
 	}
 }

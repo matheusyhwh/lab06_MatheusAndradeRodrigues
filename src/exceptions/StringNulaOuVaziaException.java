@@ -1,6 +1,6 @@
 package exceptions;
 
-public class StringNulaOuVaziaException extends Exception{
+public class StringNulaOuVaziaException extends Exception {
 	private String msg;
 
 	public StringNulaOuVaziaException(String msg) {
@@ -10,6 +10,5 @@ public class StringNulaOuVaziaException extends Exception{
 	public String getMessage() {
 		return msg;
 	}
-	
-	
+
 }

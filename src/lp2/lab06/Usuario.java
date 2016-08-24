@@ -2,13 +2,11 @@ package lp2.lab06;
 
 import java.util.ArrayList;
 
-import exceptions.LogicaException;
-import exceptions.StringNulaOuVaziaException;
-import exceptions.ValorInvalidoException;
+import exceptions.*;
 
 /**
  * 
- * @author mathe
+ * @author Matheus Andrade Rodrigues
  *
  */
 public abstract class Usuario {
@@ -19,7 +17,7 @@ public abstract class Usuario {
 	int x2p;
 
 	/**
-	 * 
+	 * Construtor de Usuario, superclasse para UsuarioNoob e UsuarioVeterano
 	 * @param nomeUsuario
 	 * @param login
 	 * @throws StringNulaOuVaziaException
@@ -40,21 +38,20 @@ public abstract class Usuario {
 	}
 
 	/**
-	 * 
+	 *Metodo desconto possui comportamentos diferentes para Usuarios Noobs e Veteranos. Os veteranos possuem um desconto maior.
 	 * @param preco
 	 * @return
 	 */
 	public abstract double desconto(double preco);
 
 	/**
-	 * 
+	 * Metodo verifica se usuario possui dinheiro suficiente para comprar o jogo. Se nao, lancara uma Excecao. Se sim, adicionara o jogo na lista de jogos comprados daquele usuario e adiciona X2p
 	 * @param jogo
 	 * @throws Exception
 	 */
 	public abstract void compra(Jogo jogo) throws Exception;
 
 	/**
-	 * 
 	 * @param montante
 	 */
 	public void addDinheiro(double montante) {
@@ -62,7 +59,6 @@ public abstract class Usuario {
 	}
 
 	/**
-	 * 
 	 * @param x2p
 	 */
 	public void addX2p(int x2p) {
@@ -70,7 +66,7 @@ public abstract class Usuario {
 	}
 
 	/**
-	 * 
+	 * Metodo procura determinado jogo na lista de Jogos comprados. Se achado, fara o registraJogada daquele respectivo jogo. 
 	 * @param nomeDoJogo
 	 * @param score
 	 * @param zerou
@@ -86,7 +82,36 @@ public abstract class Usuario {
 		Jogo jogo = getJogo(nomeDoJogo);
 		addX2p(jogo.registraJogada(score, zerou));
 	}
+	
+	/**
+	 * Verifica se ha um jogo de determinado nome na lista de jogos comprados
+	 * @param nome
+	 * @return
+	 * @throws LogicaException
+	 */
+	public Jogo getJogo(String nome) throws LogicaException {
+		for (Jogo jogo : jogosComprados) {
+			if (jogo.getNomeJogo().equals(nome)) {
+				return jogo;
+			}
+		}
+		throw new LogicaException("Jogo nao contido na lista");
+	}
+	/**
+	 * Calcula o total de custo dos jogos
+	 * @return Total
+	 */
+	public double getPrecoTotal() {
+		double Total = 0.00;
+		for (Jogo jogo : jogosComprados) {
+			Total += jogo.getPreco();
+		}
+		return Total;
+	}
 
+
+	/* Gets e Sets */
+	
 	public String getNomeUsuario() {
 		return nomeUsuario;
 	}
@@ -127,21 +152,8 @@ public abstract class Usuario {
 		this.x2p = x2p;
 	}
 
-	/**
-	 * 
-	 * @param nome
-	 * @return
-	 * @throws LogicaException
-	 */
-	public Jogo getJogo(String nome) throws LogicaException {
-		for (Jogo jogo : jogosComprados) {
-			if (jogo.getNomeJogo().equals(nome)) {
-				return jogo;
-			}
-		}
-		throw new LogicaException("Jogo nao contido na lista");
-	}
-
+	/* HashCode, Equals e toString */
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -156,31 +168,19 @@ public abstract class Usuario {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof Usuario))
-			return false;
-		Usuario other = (Usuario) obj;
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
-			return false;
-		return true;
+		if (obj instanceof Usuario) {
+			Usuario user = (Usuario) obj;
+			return user.getLogin().equals(this.getLogin());
+		}
+		return false;
 	}
 
+
 	public String toString() {
-		String toString = login + "\n" + nomeUsuario + " - ";
-		if (this instanceof UsuarioNoob) {
-			toString += "Jogador Noob\n";
-		} else if (this instanceof UsuarioVeterano) {
-			toString += "Jogador Veterano\n";
-		}
-		toString += "Lista de jogos:\n";
-		int precoTotal = 0;
+		String toString = "";
 		for (Jogo jogo : jogosComprados) {
 			toString += jogo + "\n";
-			precoTotal += jogo.getPreco();
 		}
-		toString += "\nTotal de preço dos jogos: R$ " + String.format("%.2f", precoTotal);
 		return toString;
 	}
 
